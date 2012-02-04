@@ -1,0 +1,6 @@
+{
+    "provides" : ["post/delicious"]
+  , "mongoId" : {"post" : "hash"}
+  , "synclets" : [{"name"      : "posts"
+                  ,"frequency" : 3600}]
+}

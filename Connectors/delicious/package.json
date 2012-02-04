@@ -1,0 +1,22 @@
+{
+  "author": "Singly <nerds@singly.com>",
+  "name": "delicious",
+  "description": "Delicious",
+  "version": "0.0.1",
+  "repository": {
+    "title": "Delicious",
+    "handle": "delicious",
+    "author": "nerds",
+    "update": "auto",
+    "hidden": true,
+    "github": "https://github.com/LockerProject/Locker",
+    "type": "connector",
+    "static": "false",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=0.4.9"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
