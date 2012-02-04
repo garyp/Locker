@@ -9,6 +9,7 @@
 
 import json
 import logging
+import optparse
 import os
 import sys
 
@@ -38,7 +39,23 @@ def run(process_info):
         logging.error("error writing synclet results to stdout: %s" % (e,))
 
 if __name__ == "__main__":
-    #logging.getLogger().setLevel('DEBUG')
+    def check_logging_level(option, opt_str, value, parser):
+        try:
+            lvl = getattr(logging, value.upper())
+        except AttributeError:
+            raise optparse.OptionValueError(
+                "logging level %s not valid" % value.upper())
+        setattr(parser.values, option.dest, lvl)
+
+    opt_p = optparse.OptionParser()
+    opt_p.add_option("--logging", type="string", action="callback",
+                     callback=check_logging_level,
+                     help="set synclet logging level to LEVEL",
+                     metavar="LEVEL")
+    (options, args) = opt_p.parse_args()
+
+    if options.logging:
+        logging.getLogger().setLevel(options.logging)
 
     # Process the startup JSON object
     # We can't use the usual "for line in sys.stdin" idiom because the
