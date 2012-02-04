@@ -175,7 +175,10 @@ function executeSynclet(info, synclet, callback, force) {
         run = ["node", lconfig.lockerDir + "/Common/node/synclet/client.js"];
     } else if (synclet.run.substr(-3) == ".py") {
         env["PYTHONPATH"] = path.join(lconfig.lockerDir, 'Common', 'python');
-        run = ["python", lconfig.lockerDir + "/Common/python/synclet/client.py"];
+        run = ["python"
+             , lconfig.lockerDir + "/Common/python/synclet/client.py"
+             , "--logging="+lconfig.logging.level
+             ];
     } else {
         env["NODE_PATH"] = path.join(lconfig.lockerDir, 'Common', 'node') + ":" + path.join(lconfig.lockerDir, "node_modules");
         run = ["node", path.join(lconfig.lockerDir, info.srcdir, synclet.run)];
